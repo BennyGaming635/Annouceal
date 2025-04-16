@@ -17,8 +17,17 @@ CATEGORY_ICONS = {
     "Emergency": "emergency.png",
     "Major": "major.png",
     "Reminders": "reminder.png",
-    "Exit": "exit.png"
+    "Exit": "exit.png",
+    "Next Stop": "exit.png"
 }
+
+GRANGE_TO_CITY = [
+    "Grange", "East Grange", "Seaton Park", "Albert Park", "Woodville",
+    "Croydon", "Bowden", "North Adelaide", "Adelaide"
+]
+
+CITY_TO_GRANGE = list(reversed(GRANGE_TO_CITY))
+
 
 def load_prompts():
     if os.path.exists(PROMPT_FILE):
@@ -26,11 +35,11 @@ def load_prompts():
             return json.load(f)
     return {}
 
+
 def save_prompts():
     with open(PROMPT_FILE, "w") as f:
         json.dump(prompts, f, indent=4)
 
-prompts = load_prompts()
 
 def smart_greeting():
     hour = datetime.now().hour
@@ -42,6 +51,10 @@ def smart_greeting():
         return "Good evening! "
     else:
         return "Good night! "
+
+
+prompts = load_prompts()
+
 
 class VisualAnnouncer:
     def __init__(self, text, category):
@@ -65,10 +78,25 @@ class VisualAnnouncer:
     def close(self):
         self.window.destroy()
 
+
 class Annouceal:
     def __init__(self, master):
         self.master = master
         self.master.title("Annouceal")
+
+        self.route = None
+        self.route_index = -1
+
+        self.route_mode = tk.StringVar()
+        self.route_mode.set("None")
+
+        route_label = tk.Label(master, text="Route Mode:")
+        route_label.pack(pady=2)
+
+        self.route_menu = tk.OptionMenu(master, self.route_mode, "None", "Grange to City", "City to Grange",
+                                        command=self.set_route)
+        self.route_menu.pack(pady=5)
+
         self.categories = list(prompts.keys())
         self.selected_category = tk.StringVar()
         self.selected_category.trace('w', self.update_message_list)
@@ -107,9 +135,42 @@ class Annouceal:
         self.add_button = tk.Button(master, text="Add", command=self.add_custom_message)
         self.add_button.pack(pady=5)
 
+        self.next_stop_button = tk.Button(master, text="Next Stop", command=self.announce_next_stop)
+        self.next_stop_button.pack(pady=5)
+        self.next_stop_button.pack_forget()
+
         self.update_message_list()
         if self.categories:
             self.selected_category.set(self.categories[0])
+
+    def set_route(self, value):
+        if value == "Grange to City":
+            self.route = GRANGE_TO_CITY
+            self.route_index = -1
+            self.next_stop_button.pack(pady=5)
+        elif value == "City to Grange":
+            self.route = CITY_TO_GRANGE
+            self.route_index = -1
+            self.next_stop_button.pack(pady=5)
+        else:
+            self.route = None
+            self.route_index = -1
+            self.next_stop_button.pack_forget()
+
+    def announce_next_stop(self):
+        if self.route is None:
+            messagebox.showwarning("No Route", "Please select a valid route first.")
+            return
+
+        self.route_index += 1
+        if self.route_index >= len(self.route):
+            messagebox.showinfo("End of Route", "You have reached the final stop.")
+            self.route_index = -1
+            return
+
+        station = self.route[self.route_index]
+        announcement = f"Next stop: {station}. Please prepare to alight."
+        self.play_announcement(announcement, "Next Stop")
 
     def update_message_list(self, *args):
         self.message_listbox.delete(0, tk.END)
@@ -124,32 +185,34 @@ class Annouceal:
             text = self.message_listbox.get(index)
 
         if text:
-            try:
-                pygame.mixer.music.load(ATTENTION_SOUND)
-                pygame.mixer.music.play()
-                while pygame.mixer.music.get_busy():
-                    pygame.time.Clock().tick(10)
-            except Exception as e:
-                messagebox.showwarning("Missing sound", f"Could not play attention sound. {str(e)}")
-
             greeting = smart_greeting()
             full_text = greeting + text
-
-            selected_name = self.selected_voice.get()
-            for voice in self.voices:
-                if voice.name == selected_name:
-                    engine.setProperty('voice', voice.id)
-                    break
-
-            engine.setProperty('rate', self.rate_scale.get())
-            engine.setProperty('volume', self.volume_scale.get() / 100)
-
-            visual = VisualAnnouncer(full_text, self.selected_category.get())
-            engine.say(full_text)
-            engine.runAndWait()
-            visual.close()
+            self.play_announcement(full_text, self.selected_category.get())
         else:
             messagebox.showwarning("No message", "Please select or type a message to announce!")
+
+    def play_announcement(self, text, category):
+        try:
+            pygame.mixer.music.load(ATTENTION_SOUND)
+            pygame.mixer.music.play()
+            while pygame.mixer.music.get_busy():
+                pygame.time.Clock().tick(10)
+        except Exception as e:
+            messagebox.showwarning("Missing sound", f"Could not play attention sound. {str(e)}")
+
+        selected_name = self.selected_voice.get()
+        for voice in self.voices:
+            if voice.name == selected_name:
+                engine.setProperty('voice', voice.id)
+                break
+
+        engine.setProperty('rate', self.rate_scale.get())
+        engine.setProperty('volume', self.volume_scale.get() / 100)
+
+        visual = VisualAnnouncer(text, category)
+        engine.say(text)
+        engine.runAndWait()
+        visual.close()
 
     def add_custom_message(self):
         text = self.custom_entry.get().strip()
@@ -167,6 +230,7 @@ class Annouceal:
             messagebox.showinfo("Saved!", f"'{text}' was added and saved under {cat}.")
         else:
             messagebox.showwarning("Empty message", "Please type a message first!")
+
 
 if __name__ == "__main__":
     root = tk.Tk()

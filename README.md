@@ -16,6 +16,8 @@ So far I've added;
 - Adjust speed and volume
 - Visual Annoucements
 - Smart Annoucements (E.g - Good morning in the morning or Good Evening in the arvo.)
+- Routes (Currently only the Grange Line)
 
 This is what I'm adding next (In order hopefully)
-1. Routes (Just gonna use Adelaide Metro's train and changes the annoucement based on the next station etc.)
+1. More Routes!
+2. 
