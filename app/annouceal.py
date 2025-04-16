@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, simpledialog
 from PIL import Image, ImageTk
 import pyttsx3
 import json
@@ -28,6 +28,29 @@ GRANGE_TO_CITY = [
 
 CITY_TO_GRANGE = list(reversed(GRANGE_TO_CITY))
 
+PORT_DOCK_ROUTE = [
+    "Port Dock", "Alberton", "Cheltenham", "St Clair", "Woodville", 
+    "Woodville Park", "Kilkenny", "West Croydon", "Croydon", "Bowden", "Adelaide"
+]
+
+CITY_TO_PORT_DOCK_ROUTE = list(reversed(PORT_DOCK_ROUTE))
+
+OUTER_HARBOUR_ROUTE = [
+    "Outer Harbour", "North Haven", "Osborne", "Midlunga", "Taperoo", "Draper", "Largs North", "Largs", "Peterhead",
+    "Glanville", "Ethelton", "Port Adelaide Interchange", "Alberton", "Cheltenham", "St Clair", "Woodville",
+    "Woodville Park", "Kilkenny", "West Croydon", "Croydon", "Bowden", "Adelaide"
+]
+
+CITY_TO_OUTER_HARBOUR_ROUTE = list(reversed(OUTER_HARBOUR_ROUTE))
+
+ROUTE_CODES = {
+    "Grange to City": 1000,
+    "Grange to Grange": 1001,
+    "Outer Harbour to City": 2000,
+    "Outer Harbour to Outer Harbour": 2001,
+    "Port Dock to City": 2002,
+    "Port Dock to Port Dock": 2003
+}
 
 def load_prompts():
     if os.path.exists(PROMPT_FILE):
@@ -35,11 +58,9 @@ def load_prompts():
             return json.load(f)
     return {}
 
-
 def save_prompts():
     with open(PROMPT_FILE, "w") as f:
         json.dump(prompts, f, indent=4)
-
 
 def smart_greeting():
     hour = datetime.now().hour
@@ -52,9 +73,7 @@ def smart_greeting():
     else:
         return "Good night! "
 
-
 prompts = load_prompts()
-
 
 class VisualAnnouncer:
     def __init__(self, text, category):
@@ -78,7 +97,6 @@ class VisualAnnouncer:
     def close(self):
         self.window.destroy()
 
-
 class Annouceal:
     def __init__(self, master):
         self.master = master
@@ -87,15 +105,11 @@ class Annouceal:
         self.route = None
         self.route_index = -1
 
-        self.route_mode = tk.StringVar()
-        self.route_mode.set("None")
-
-        route_label = tk.Label(master, text="Route Mode:")
+        route_label = tk.Label(master, text="Route Selection:")
         route_label.pack(pady=2)
 
-        self.route_menu = tk.OptionMenu(master, self.route_mode, "None", "Grange to City", "City to Grange",
-                                        command=self.set_route)
-        self.route_menu.pack(pady=5)
+        self.route_button = tk.Button(master, text="Enter Route Code", command=self.enter_route_code)
+        self.route_button.pack(pady=5)
 
         self.categories = list(prompts.keys())
         self.selected_category = tk.StringVar()
@@ -143,23 +157,51 @@ class Annouceal:
         if self.categories:
             self.selected_category.set(self.categories[0])
 
-    def set_route(self, value):
-        if value == "Grange to City":
+    def enter_route_code(self):
+        code = simpledialog.askinteger("Enter Route Code", "Please enter the route code:")
+        if code is not None:
+            self.set_route(code)
+
+    def set_route(self, code):
+        route_name = None
+        for name, route_code in ROUTE_CODES.items():
+            if route_code == code:
+                route_name = name
+                break
+
+        if route_name is None:
+            messagebox.showerror("Invalid Code", "That route code is not valid.")
+            self.route = None
+            self.route_index = -1
+            self.next_stop_button.pack_forget()
+            return
+
+        if route_name == "Grange to City":
             self.route = GRANGE_TO_CITY
-            self.route_index = -1
-            self.next_stop_button.pack(pady=5)
-        elif value == "City to Grange":
+        elif route_name == "Grange to Grange":
             self.route = CITY_TO_GRANGE
-            self.route_index = -1
-            self.next_stop_button.pack(pady=5)
+        elif route_name == "Outer Harbour to City":
+            self.route = OUTER_HARBOUR_ROUTE
+        elif route_name == "Outer Harbour to Outer Harbour":
+            self.route = OUTER_HARBOUR_ROUTE
+        elif route_name == "Port Dock to City":
+            self.route = PORT_DOCK_ROUTE
+        elif route_name == "Port Dock to Port Dock":
+            self.route = PORT_DOCK_ROUTE
         else:
             self.route = None
+
+        if self.route:
+            self.route_index = -1
+            self.next_stop_button.pack(pady=5)
+            messagebox.showinfo("Route Selected", f"Route set to {route_name}")
+        else:
             self.route_index = -1
             self.next_stop_button.pack_forget()
 
     def announce_next_stop(self):
         if self.route is None:
-            messagebox.showwarning("No Route", "Please select a valid route first.")
+            messagebox.showwarning("No Route", "Please enter a valid route code first.")
             return
 
         self.route_index += 1
@@ -169,7 +211,7 @@ class Annouceal:
             return
 
         station = self.route[self.route_index]
-        announcement = f"Next stop: {station}. Please prepare to alight."
+        announcement = f"Next stop: {station}. Please prepare to exit the train."
         self.play_announcement(announcement, "Next Stop")
 
     def update_message_list(self, *args):
@@ -230,7 +272,6 @@ class Annouceal:
             messagebox.showinfo("Saved!", f"'{text}' was added and saved under {cat}.")
         else:
             messagebox.showwarning("Empty message", "Please type a message first!")
-
 
 if __name__ == "__main__":
     root = tk.Tk()
