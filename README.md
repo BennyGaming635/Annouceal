@@ -14,8 +14,8 @@ So far I've added;
 - Natural Voices (Only works on Windows 11 - Sorry!)
 - Start-tone (Like Heathrow Airport)
 - Adjust speed and volume
+- Visual Annoucements
+- Smart Annoucements (E.g - Good morning in the morning or Good Evening in the arvo.)
 
 This is what I'm adding next (In order hopefully)
-1. Visual Annoucements
-2. Smart Annoucements (E.g - Good morning in the morning or Good Evening in the arvo.)
-3. Routes (Just gonna use Adelaide Metro's train and changes the annoucement based on the next station etc.)
+1. Routes (Just gonna use Adelaide Metro's train and changes the annoucement based on the next station etc.)

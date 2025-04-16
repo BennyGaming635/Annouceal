@@ -1,15 +1,24 @@
 import tkinter as tk
 from tkinter import messagebox
+from PIL import Image, ImageTk
 import pyttsx3
 import json
 import os
 import pygame
+from datetime import datetime
 
 pygame.mixer.init()
 
 engine = pyttsx3.init()
 PROMPT_FILE = "prompts.json"
 ATTENTION_SOUND = "bing.mp3"
+
+CATEGORY_ICONS = {
+    "Emergency": "emergency.png",
+    "Major": "major.png",
+    "Reminders": "reminder.png",
+    "Exit": "exit.png"
+}
 
 def load_prompts():
     if os.path.exists(PROMPT_FILE):
@@ -23,6 +32,39 @@ def save_prompts():
 
 prompts = load_prompts()
 
+def smart_greeting():
+    hour = datetime.now().hour
+    if 5 <= hour < 12:
+        return "Good morning! "
+    elif 12 <= hour < 17:
+        return "Good afternoon! "
+    elif 17 <= hour < 21:
+        return "Good evening! "
+    else:
+        return "Good night! "
+
+class VisualAnnouncer:
+    def __init__(self, text, category):
+        self.window = tk.Toplevel()
+        self.window.title("Visual Announcement")
+        self.window.geometry("400x200")
+        icon_file = CATEGORY_ICONS.get(category, "unknown.png")
+
+        if os.path.exists(icon_file):
+            image = Image.open(icon_file).resize((80, 80))
+            self.icon = ImageTk.PhotoImage(image)
+            self.image_label = tk.Label(self.window, image=self.icon)
+            self.image_label.pack(pady=10)
+
+        self.label = tk.Label(self.window, text=text, font=("Arial", 14), wraplength=380, justify="center")
+        self.label.pack(pady=10)
+
+        self.window.update_idletasks()
+        self.window.update()
+
+    def close(self):
+        self.window.destroy()
+
 class Annouceal:
     def __init__(self, master):
         self.master = master
@@ -32,8 +74,10 @@ class Annouceal:
         self.selected_category.trace('w', self.update_message_list)
         self.category_menu = tk.OptionMenu(master, self.selected_category, *self.categories)
         self.category_menu.pack(pady=5)
+
         self.message_listbox = tk.Listbox(master, width=50, height=8)
         self.message_listbox.pack(pady=5)
+
         self.custom_entry = tk.Entry(master, width=50)
         self.custom_entry.pack(pady=5)
 
@@ -83,10 +127,13 @@ class Annouceal:
             try:
                 pygame.mixer.music.load(ATTENTION_SOUND)
                 pygame.mixer.music.play()
-                while pygame.mixer.music.get_busy():  # Wait for sound to finish
+                while pygame.mixer.music.get_busy():
                     pygame.time.Clock().tick(10)
             except Exception as e:
                 messagebox.showwarning("Missing sound", f"Could not play attention sound. {str(e)}")
+
+            greeting = smart_greeting()
+            full_text = greeting + text
 
             selected_name = self.selected_voice.get()
             for voice in self.voices:
@@ -96,8 +143,11 @@ class Annouceal:
 
             engine.setProperty('rate', self.rate_scale.get())
             engine.setProperty('volume', self.volume_scale.get() / 100)
-            engine.say(text)
+
+            visual = VisualAnnouncer(full_text, self.selected_category.get())
+            engine.say(full_text)
             engine.runAndWait()
+            visual.close()
         else:
             messagebox.showwarning("No message", "Please select or type a message to announce!")
 
