@@ -43,13 +43,32 @@ OUTER_HARBOUR_ROUTE = [
 
 CITY_TO_OUTER_HARBOUR_ROUTE = list(reversed(OUTER_HARBOUR_ROUTE))
 
+OSBORNE_TO_CITY = [
+    "Osborne", "Midlunga", "Taperoo", "Draper", "Largs North", "Largs", "Peterhead",
+    "Glanville", "Ethelton", "Port Adelaide Interchange", "Alberton", "Cheltenham", "St Clair", "Woodville",
+    "Adelaide"
+]
+
+CITY_TO_OSBORNE = list(reversed(OSBORNE_TO_CITY))
+
+FLINDERS_TO_CITY = [
+    "Flinders", "Tonsley", "Mitchell Park", "Woodlands Park", "Edwardstown", "Emerson", "Clarance Park",
+    "Goodwood", "Adelaide Showgrounds", "Mile End", "Adelaide"
+]
+
+CITY_TO_FLINDERS = list(reversed(OSBORNE_TO_CITY))
+
 ROUTE_CODES = {
     "Grange to City": 1000,
     "Grange to Grange": 1001,
     "Outer Harbour to City": 2000,
     "Outer Harbour to Outer Harbour": 2001,
     "Port Dock to City": 2002,
-    "Port Dock to Port Dock": 2003
+    "Port Dock to Port Dock": 2003,
+    "Osborne to City": 2004,
+    "City to Osborne": 2005,
+    "Flinders to City": 3000,
+    "City to Flinders": 3001
 }
 
 def load_prompts():
@@ -188,6 +207,14 @@ class Annouceal:
             self.route = PORT_DOCK_ROUTE
         elif route_name == "Port Dock to Port Dock":
             self.route = PORT_DOCK_ROUTE
+        elif route_name == "Osborne to City":
+            self.route = OSBORNE_TO_CITY
+        elif route_name == "City to Osborne":
+            self.route = CITY_TO_OSBORNE
+        elif route_name == "Flinders to City":
+            self.route = FLINDERS_TO_CITY
+        elif route_name == "City to Flinders":
+            self.route = CITY_TO_FLINDERS
         else:
             self.route = None
 
