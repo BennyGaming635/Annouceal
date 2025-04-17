@@ -56,11 +56,18 @@ FLINDERS_TO_CITY = [
     "Goodwood", "Adelaide Showgrounds", "Mile End", "Adelaide"
 ]
 
-CITY_TO_FLINDERS = list(reversed(OSBORNE_TO_CITY))
+CITY_TO_FLINDERS = list(reversed(FLINDERS_TO_CITY))
+
+BELAIR_TO_CITY = [
+    "Belair", "Pinera", "Glenalta", "Blackwood", "Coromandel", "Lynton", "Torrens Park",
+    "Mitchem", "Unley Park", "Millswood", "Goodwood", "Adelaide Showgrounds", "Mile End", "Adelaide"
+]
+
+CITY_TO_BELAIR = list(reversed(BELAIR_TO_CITY))
 
 ROUTE_CODES = {
     "Grange to City": 1000,
-    "Grange to Grange": 1001,
+    "City to Grange": 1001,
     "Outer Harbour to City": 2000,
     "Outer Harbour to Outer Harbour": 2001,
     "Port Dock to City": 2002,
@@ -68,7 +75,9 @@ ROUTE_CODES = {
     "Osborne to City": 2004,
     "City to Osborne": 2005,
     "Flinders to City": 3000,
-    "City to Flinders": 3001
+    "City to Flinders": 3001,
+    "Belair to City": 4000,
+    "City to Belair": 4001
 }
 
 def load_prompts():
@@ -215,6 +224,10 @@ class Annouceal:
             self.route = FLINDERS_TO_CITY
         elif route_name == "City to Flinders":
             self.route = CITY_TO_FLINDERS
+        elif route_name == "Belair to City":
+            self.route = BELAIR_TO_CITY
+        elif route_name == "City to Belair":
+            self.route = CITY_TO_BELAIR
         else:
             self.route = None
 

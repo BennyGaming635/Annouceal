@@ -10,7 +10,7 @@
 | Outer Harbour | City to Outer Harbour | 2001 |
 | Port Docks    | Port Docks to City    | 2002 |
 | Port Docks    | City to Port Docks    | 2003 |
-| Osborne       | City to Osborne       | 2004 |
-| Osborne       | Osborne to City       | 2005 |
+| Belair        | Belair to City        | 3000 |
+| Belair        | City to Belair        | 3001 |
 
 ## New lines will be added periodically.
