@@ -22,7 +22,7 @@ CATEGORY_ICONS = {
 }
 
 GRANGE_TO_CITY = [
-    "Grange", "East Grange", "Seaton Park", "Albert Park", "Woodville",
+    "Grange", "East Grange", "Seaton Park", "Albert Park", "Woodville", 
     "Croydon", "Bowden", "North Adelaide", "Adelaide"
 ]
 
@@ -30,44 +30,59 @@ CITY_TO_GRANGE = list(reversed(GRANGE_TO_CITY))
 
 PORT_DOCK_ROUTE = [
     "Port Dock", "Alberton", "Cheltenham", "St Clair", "Woodville", 
-    "Woodville Park", "Kilkenny", "West Croydon", "Croydon", "Bowden", "Adelaide"
+    "Woodville Park", "Kilkenny", "West Croydon", "Croydon", "Bowden",
+    "Adelaide"
 ]
 
 CITY_TO_PORT_DOCK_ROUTE = list(reversed(PORT_DOCK_ROUTE))
 
 OUTER_HARBOUR_ROUTE = [
-    "Outer Harbour", "North Haven", "Osborne", "Midlunga", "Taperoo", "Draper", "Largs North", "Largs", "Peterhead",
-    "Glanville", "Ethelton", "Port Adelaide Interchange", "Alberton", "Cheltenham", "St Clair", "Woodville",
-    "Woodville Park", "Kilkenny", "West Croydon", "Croydon", "Bowden", "Adelaide"
+    "Outer Harbour", "North Haven", "Osborne", "Midlunga", "Taperoo", 
+    "Draper", "Largs North", "Largs", "Peterhead", "Glanville", 
+    "Ethelton", "Port Adelaide Interchange", "Alberton", "Cheltenham", "St Clair", 
+    "Woodville", "Woodville Park", "Kilkenny", "West Croydon", "Croydon", 
+    "Bowden", "Adelaide"
 ]
 
 CITY_TO_OUTER_HARBOUR_ROUTE = list(reversed(OUTER_HARBOUR_ROUTE))
 
 OSBORNE_TO_CITY = [
-    "Osborne", "Midlunga", "Taperoo", "Draper", "Largs North", "Largs", "Peterhead",
-    "Glanville", "Ethelton", "Port Adelaide Interchange", "Alberton", "Cheltenham", "St Clair", "Woodville",
-    "Adelaide"
+    "Osborne", "Midlunga", "Taperoo", "Draper", "Largs North",
+    "Largs", "Peterhead", "Glanville", "Ethelton", "Port Adelaide Interchange", 
+    "Alberton", "Cheltenham", "St Clair", "Woodville", "Adelaide"
 ]
 
 CITY_TO_OSBORNE = list(reversed(OSBORNE_TO_CITY))
 
 FLINDERS_TO_CITY = [
-    "Flinders", "Tonsley", "Mitchell Park", "Woodlands Park", "Edwardstown", "Emerson", "Clarance Park",
+    "Flinders", "Tonsley", "Mitchell Park", "Woodlands Park", "Edwardstown",
+    "Emerson", "Clarance Park", "Goodwood", "Adelaide Showgrounds", "Mile End",
+    "Adelaide"
+]
+
+CITY_TO_FLINDERS = list(reversed(OSBORNE_TO_CITY))
+
+SEAFORD_TO_CITY = [
+    "Seaford", "Seaford Meadows", "Noarlunga", "Christie Downs", "Lonsdale",
+    "Hallet Cove Beach", "Hallet Cove", "Marino Rocks", "Marino", "Seacliff", 
+    "Brighton", "Hove", "Warradale", "Oaklands", "Marion", 
+    "Ascot Park", "Woodlands", "Edwardstown", "Emerson", "Clarance Park", 
     "Goodwood", "Adelaide Showgrounds", "Mile End", "Adelaide"
 ]
 
-CITY_TO_FLINDERS = list(reversed(FLINDERS_TO_CITY))
+CITY_TO_SEAFORD = list(reversed(SEAFORD_TO_CITY))
 
-BELAIR_TO_CITY = [
-    "Belair", "Pinera", "Glenalta", "Blackwood", "Coromandel", "Lynton", "Torrens Park",
-    "Mitchem", "Unley Park", "Millswood", "Goodwood", "Adelaide Showgrounds", "Mile End", "Adelaide"
+NOARLUNGA_TO_CITY = [
+    "Noarlunga", "Lonsdale", "Hallet Cove Beach", "Hallet Cove", "Brighton",
+    "Hove", "Warradale", "Oaklands", "Woodlands", "Edwardstown",
+    "Emerson", "Adelaide Showgrounds", "Mile End", "Adelaide"
 ]
 
-CITY_TO_BELAIR = list(reversed(BELAIR_TO_CITY))
+CITY_TO_NOARLUNGA = list(reversed(NOARLUNGA_TO_CITY))
 
 ROUTE_CODES = {
     "Grange to City": 1000,
-    "City to Grange": 1001,
+    "Grange to Grange": 1001,
     "Outer Harbour to City": 2000,
     "Outer Harbour to Outer Harbour": 2001,
     "Port Dock to City": 2002,
@@ -76,8 +91,10 @@ ROUTE_CODES = {
     "City to Osborne": 2005,
     "Flinders to City": 3000,
     "City to Flinders": 3001,
-    "Belair to City": 4000,
-    "City to Belair": 4001
+    "Seaford to City": 3002,
+    "City to Seaford": 3003,
+    "Noarlunga to City": 3004,
+    "City to Noarlunga": 3005
 }
 
 def load_prompts():
@@ -224,10 +241,15 @@ class Annouceal:
             self.route = FLINDERS_TO_CITY
         elif route_name == "City to Flinders":
             self.route = CITY_TO_FLINDERS
-        elif route_name == "Belair to City":
-            self.route = BELAIR_TO_CITY
-        elif route_name == "City to Belair":
-            self.route = CITY_TO_BELAIR
+        elif route_name == "Seaford to City":
+            self.route = SEAFORD_TO_CITY
+        elif route_name == "City to Seaford":
+            self.route = CITY_TO_SEAFORD
+        elif route_name == "Noarlunga to City":
+            self.route = NOARLUNGA_TO_CITY
+        elif route_name == "City to Noarlunga":
+            self.route = CITY_TO_NOARLUNGA
+        
         else:
             self.route = None
 
@@ -251,7 +273,7 @@ class Annouceal:
             return
 
         station = self.route[self.route_index]
-        announcement = f"Next stop: {station}. Please prepare to exit the train."
+        announcement = f"This is: {station}. Please prepare to disembark."
         self.play_announcement(announcement, "Next Stop")
 
     def update_message_list(self, *args):

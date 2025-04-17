@@ -10,7 +10,12 @@
 | Outer Harbour | City to Outer Harbour | 2001 |
 | Port Docks    | Port Docks to City    | 2002 |
 | Port Docks    | City to Port Docks    | 2003 |
-| Belair        | Belair to City        | 3000 |
-| Belair        | City to Belair        | 3001 |
+| Flinders      | Flinders to City      | 3000 |
+| Flinders      | City to Flinders      | 3001 |
+| Seaford       | Seaford to City       | 3002 |
+| Seaford       | City to Seaford       | 3003 |
+| Noarlunga     | Noarlunga to City     | 3004 |
+| Noarlunga     | City to Noarlunga     | 3005 |
 
 ## New lines will be added periodically.
+## Suggest some lines from all over the world and I may add them.
