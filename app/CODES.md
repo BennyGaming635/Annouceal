@@ -16,6 +16,8 @@
 | Seaford       | City to Seaford       | 3003 |
 | Noarlunga     | Noarlunga to City     | 3004 |
 | Noarlunga     | City to Noarlunga     | 3005 |
+| Belair        | Belair to City        | 4000 |
+| Belair        | City to Belair        | 4001 |
 
 ## New lines will be added periodically.
 ## Suggest some lines from all over the world and I may add them.

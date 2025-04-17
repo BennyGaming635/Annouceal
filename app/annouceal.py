@@ -80,6 +80,14 @@ NOARLUNGA_TO_CITY = [
 
 CITY_TO_NOARLUNGA = list(reversed(NOARLUNGA_TO_CITY))
 
+BELAIR_TO_CITY = [
+     "Belair", "Pinera", "Glenalta", "Blackwood", "Coromandel",
+     "Lynton", "Torrens Park", "Mitcham", "Unley Park", "Millswood", 
+     "Goodwood", "Adelaide Showgrounds", "Mile End", "Adelaide"
+]
+
+CITY_TO_BELAIR = list(reversed(BELAIR_TO_CITY))
+
 ROUTE_CODES = {
     "Grange to City": 1000,
     "Grange to Grange": 1001,
@@ -94,7 +102,9 @@ ROUTE_CODES = {
     "Seaford to City": 3002,
     "City to Seaford": 3003,
     "Noarlunga to City": 3004,
-    "City to Noarlunga": 3005
+    "City to Noarlunga": 3005,
+    "Belair to City": 4000,
+    "City to Belair": 4001
 }
 
 def load_prompts():
@@ -249,6 +259,10 @@ class Annouceal:
             self.route = NOARLUNGA_TO_CITY
         elif route_name == "City to Noarlunga":
             self.route = CITY_TO_NOARLUNGA
+        elif route_name == "Belair to City":
+            self.route = BELAIR_TO_CITY
+        elif route_name == "City to Belair":
+            self.route = CITY_TO_BELAIR
         
         else:
             self.route = None
