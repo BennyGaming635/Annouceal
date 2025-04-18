@@ -88,6 +88,32 @@ BELAIR_TO_CITY = [
 
 CITY_TO_BELAIR = list(reversed(BELAIR_TO_CITY))
 
+SALIS_TO_CITY = [
+     "Salisbury", "Mawson Lakes", "Adelaide"
+]
+
+CITY_TO_SALIS = list(reversed(SALIS_TO_CITY))
+
+GAWLER_TO_CITY = [
+     "Gawler", "Evanston", "Tambelin", "Kudla", "Munno Para",
+     "Smithfield", "Broadmeadows", "Womma", "Elizabeth", "Elizabeth South",
+     "Nurlutta", "Salisbury", "Chidda", "Parafield Gardens", "Parafield",
+     "Greenfields", "Mawson Lakes", "Dry Creek", "Kilburn", "Islington",
+     "Dudley Park", "Ovingham", "North Adelaide", "Adelaide"
+]
+
+CITY_TO_GAWLER = list(reversed(GAWLER_TO_CITY))
+
+GAWLERC_TO_CITY = [
+     "Gawler Central", "Gawler Oval", "Gawler", "Evanston", "Tambelin", "Kudla", "Munno Para",
+     "Smithfield", "Broadmeadows", "Womma", "Elizabeth", "Elizabeth South",
+     "Nurlutta", "Salisbury", "Chidda", "Parafield Gardens", "Parafield",
+     "Greenfields", "Mawson Lakes", "Dry Creek", "Kilburn", "Islington",
+     "Dudley Park", "Ovingham", "North Adelaide", "Adelaide"
+]
+
+CITY_TO_GAWLERC = list(reversed(GAWLERC_TO_CITY))
+
 ROUTE_CODES = {
     "Grange to City": 1000,
     "Grange to Grange": 1001,
@@ -104,7 +130,13 @@ ROUTE_CODES = {
     "Noarlunga to City": 3004,
     "City to Noarlunga": 3005,
     "Belair to City": 4000,
-    "City to Belair": 4001
+    "City to Belair": 4001,
+    "Salisbury to City": 5000,
+    "City to Salisbury": 5001,
+    "Gawler to City": 5002,
+    "City to Gawler": 5003,
+    "Gawler Central to City": 5004,
+    "City to Gawler Central": 5005
 }
 
 def load_prompts():
@@ -263,6 +295,18 @@ class Annouceal:
             self.route = BELAIR_TO_CITY
         elif route_name == "City to Belair":
             self.route = CITY_TO_BELAIR
+        elif route_name == "Salisbury to City":
+            self.route = SALIS_TO_CITY
+        elif route_name == "City to Salisbury":
+            self.route = CITY_TO_SALIS
+        elif route_name == "Gawler to City":
+            self.route = GAWLER_TO_CITY
+        elif route_name == "City to Gawler":
+            self.route = CITY_TO_GAWLER
+        elif route_name == "Gawler Central to City":
+            self.route = GAWLERC_TO_CITY
+        elif route_name == "City to Gawler Central":
+            self.route = CITY_TO_GAWLERC
         
         else:
             self.route = None
