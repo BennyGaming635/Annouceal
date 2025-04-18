@@ -16,8 +16,7 @@ So far I've added;
 - Adjust speed and volume
 - Visual Annoucements
 - Smart Annoucements (E.g - Good morning in the morning or Good Evening in the arvo.)
-- Routes (Currently only the Grange Line)
+- Routes (All routes are complete in Adelaide).
 
 This is what I'm adding next (In order hopefully)
-1. More Routes!
-2. 
+1. Adding Victorias' Metro Network.
