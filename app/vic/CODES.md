@@ -6,8 +6,12 @@
 |----------------|----------------------------|-------|
 | Sandringham    | Sandringham to City        |  100  |
 | Sandringham    | City to Sandringham        |  101  |
-| Williamstown   | Williamstown to City       |  102  |
-| Williamstown   | City to Williamstown       |  103  |
+| Williamstown   | Williamstown to City       |  200  |
+| Williamstown   | City to Williamstown       |  201  |
+| Werribee       | Werribee to City           |  202  |
+| Werribee       | City to Werribee           |  203  |
+| Frankstown     | Frankstown to City         |  204  |
+| Frankstown     | City to Frankstown         |  205  |
 
 ## New lines will be added periodically.
 ## Suggest some lines from all over the world and I may add them.

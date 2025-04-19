@@ -37,12 +37,35 @@ WILLIAMS_TO_CITY = [
 
 CITY_TO_WILLIAMS = list(reversed(WILLIAMS_TO_CITY))
 
+WERRIBEE_TO_CITY = [
+    "Werribee", "Hoppers Crossing", "Williams Landing", "Aircraft", "Laverton",
+    "Westona", "Altona", "Seaholme", "Newport", "Spotswood",
+    "Yarraville", "Seddon", "Footscray", "South Kensington", 
+    "Southern Cross", "Flinders Street"
+]
+
+CITY_TO_WERRIBEE = list(reversed(WERRIBEE_TO_CITY))
+
+FRANKS_TO_CITY = [
+    "Frankston", "Kananook", "Seaford", "Carrum", "Bonbeach",
+    "Chelsea", "Edithvale", "Aspendale", "Mordialloc", "Parkdale",
+    "Mentone", "Cheltenham", "Southland", "Highett", "Moorabbin",
+    "Patterson", "Bentleigh", "McKinnon", "Ormond", "Glenhuntly", 
+    "Caulfield", "Malvern", "Armadale", "Toorak", "Hawksburn", "South Yarra", "Flinders Street", "Southern Cross"
+]
+
+CITY_TO_FRANKS = list(reversed(FRANKS_TO_CITY))
+
 
 ROUTE_CODES = {
     "Sandringham to City": 100,
     "City to Sandringham": 101,
-    "Williamstown to City": 102,
-    "City to Williamstown": 103
+    "Williamstown to City": 200,
+    "City to Williamstown": 201,
+    "Werribee to City": 202,
+    "City to Werribee": 203,
+    "Frankston to City": 204,
+    "City to Frankston": 205,
 }
 
 def load_prompts():
@@ -178,6 +201,14 @@ class Annouceal:
             self.route = WILLIAMS_TO_CITY
         elif route_name == "City to Williamstown":
             self.route = CITY_TO_WILLIAMS
+        elif route_name == "Werribee to City":
+            self.route = WERRIBEE_TO_CITY
+        elif route_name == "City to Werribee":
+            self.route = CITY_TO_WERRIBEE
+        elif route_name == "Frankston to City":
+            self.route = FRANKS_TO_CITY
+        elif route_name == "City to Frankston":
+            self.route = CITY_TO_FRANKS
         
         else:
             self.route = None
