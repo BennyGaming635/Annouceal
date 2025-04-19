@@ -12,6 +12,9 @@
 | Werribee       | City to Werribee           |  203  |
 | Frankstown     | Frankstown to City         |  204  |
 | Frankstown     | City to Frankstown         |  205  |
-
+| Cranbourne     | Cranbourne to City         |  300  |
+| Cranbourne     | City to Cranbourne         |  301  |
+| Pakenham       | Pakenham to City           |  302  |
+| Pakenham       | City to Pakenham           |  303  |
 ## New lines will be added periodically.
 ## Suggest some lines from all over the world and I may add them.

@@ -51,10 +51,30 @@ FRANKS_TO_CITY = [
     "Chelsea", "Edithvale", "Aspendale", "Mordialloc", "Parkdale",
     "Mentone", "Cheltenham", "Southland", "Highett", "Moorabbin",
     "Patterson", "Bentleigh", "McKinnon", "Ormond", "Glenhuntly", 
-    "Caulfield", "Malvern", "Armadale", "Toorak", "Hawksburn", "South Yarra", "Flinders Street", "Southern Cross"
+    "Caulfield", "Malvern", "Armadale", "Toorak", "Hawksburn",
+    "South Yarra", "Flinders Street"
 ]
 
 CITY_TO_FRANKS = list(reversed(FRANKS_TO_CITY))
+
+CRANBOURNE_TO_CITY = [
+    "Cranbourne", "Merinda Park", "Lynbrook", "Dandenong", "Yarraman",
+    "Noble Park", "Sandown Park", "Springvale", "Westall", "Clayton",
+    "Huntingdale", "Oakleigh", "Hughesdale", "Murrumbeena", "Carnegie",
+    "Caulfield", "South Yarra", "Richmond", "Flinders Street"
+]
+
+CITY_TO_CRANBOURNE = list(reversed(CRANBOURNE_TO_CITY))
+
+PAKENHAM_TO_CITY = [
+    "East Pakenham", "Pakenham", "Cardinia Road", "Officer", "Beaconsfield",
+    "Berwick", "Narre Warren", "Hallam", "Dandenong", "Yarraman",
+    "Noble Park", "Sandown Park", "Springvale", "Westall", "Clayton",
+    "Huntingdale", "Oakleigh", "Hughesdale", "Murrumbeena", "Carnegie",
+    "Caulfield", "South Yarra", "Richmond", "Flinders Street"
+]
+
+CITY_TO_PAKENHAM = list(reversed(PAKENHAM_TO_CITY))
 
 
 ROUTE_CODES = {
@@ -66,6 +86,10 @@ ROUTE_CODES = {
     "City to Werribee": 203,
     "Frankston to City": 204,
     "City to Frankston": 205,
+    "Cranbourne to City": 300,
+    "City to Cranbourne": 301,
+    "Pakenham to City": 302,
+    "City to Pakenham": 303
 }
 
 def load_prompts():
@@ -209,6 +233,14 @@ class Annouceal:
             self.route = FRANKS_TO_CITY
         elif route_name == "City to Frankston":
             self.route = CITY_TO_FRANKS
+        elif route_name == "Cranbourne to City":
+            self.route = CRANBOURNE_TO_CITY
+        elif route_name == "City to Cranbourne":
+            self.route = CITY_TO_CRANBOURNE
+        elif route_name == "Pakenham to City":
+            self.route = PAKENHAM_TO_CITY
+        elif route_name == "City to Pakenham":
+            self.route = CITY_TO_PAKENHAM
         
         else:
             self.route = None
