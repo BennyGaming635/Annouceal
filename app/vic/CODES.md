@@ -16,5 +16,15 @@
 | Cranbourne     | City to Cranbourne         |  301  |
 | Pakenham       | Pakenham to City           |  302  |
 | Pakenham       | City to Pakenham           |  303  |
+| Glen Waverley  | Glen Waverley to City      |  400  |
+| Glen Waverley  | City to Glen Waverley      |  401  |
+| Alamein        | Alamein to City            |  402  |
+| Alamein        | City to Alamein            |  403  |
+| Lilydale       | Lilydale to City           |  404  |
+| Lilydale       | City to Lilydale           |  405  |
+| Belgrave       | Belgrave to City           |  406  |
+| Belgrave       | City to Belgrave           |  407  |
+
+
 ## New lines will be added periodically.
 ## Suggest some lines from all over the world and I may add them.

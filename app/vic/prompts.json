@@ -1,29 +1,33 @@
 {
-    "Major": [
-      "This train has been delayed due to a disruption on the network.",
-      "Please ensure that you have tapped on with your Myki Card to avoid heavy penalties.",
-      "Welcome abord this train service operated by Hack Club Transit. We hope you enjoy your journey.",
-      "Attention passengers: Due to an earlier incident, some services may be delayed. We apologize for the inconvenience.",
-      "Please be aware that replacement buses are operating between some stations on this route."
-    ],
-    "Emergency": [
-      "This is not a drill. Evacuate. Evacuate.",
-      "This train has lost power, please remain calm.",
-      "Please remain calm. We are experiencing a delay due to a signal failure.",
-      "Please exit this carriage immediately. This is not a drill."
-    ],
-    "Reminders": [
-      "Please keep your bags with you at all times.",
-      "Please do not block the doors when they are opening or closing.",
-      "Please offer your priority seat to those who may need it.",
-      "Please keep your bags off the seats to allow for more passengers.",
-      "See something that isn't right? Report it! File your report by either calling Hack Club Transit or by visiting our website today.",
-      "Eating and drinking is not prohitited in this train. Water is excepted.",
-      "Stepping on railway tracks is illegal and dangerous. Please stay behind the yellow line at staions or you might be ran over, its simple knowledge."
-    ],
-    "Exit": [
-      "Please exit on the right in the direction of travel.",
-      "Please exit on the left in the direction of travel",
-      "Please do not exit from this carriage. The doors will not open, please head to another carriage."
-    ]
-  }
+  "Major": [
+    "This train has been delayed due to a disruption on the network.",
+    "Please ensure that you have tapped on with your Myki Card to avoid heavy penalties.",
+    "Welcome abord this train service operated by Hack Club Transit. We hope you enjoy your journey.",
+    "Attention passengers: Due to an earlier incident, some services may be delayed. We apologize for the inconvenience.",
+    "Please be aware that replacement buses are operating between some stations on this route."
+  ],
+  "Emergency": [
+    "This is not a drill. Evacuate. Evacuate.",
+    "This train has lost power, please remain calm.",
+    "Please remain calm. We are experiencing a delay due to a signal failure.",
+    "Please exit this carriage immediately. This is not a drill."
+  ],
+  "Reminders": [
+    "Please keep your bags with you at all times.",
+    "Please do not block the doors when they are opening or closing.",
+    "Please offer your priority seat to those who may need it.",
+    "Please keep your bags off the seats to allow for more passengers.",
+    "See something that isn't right? Report it! File your report by either calling Hack Club Transit or by visiting our website today.",
+    "Eating and drinking is not prohitited in this train. Water is excepted.",
+    "Stepping on railway tracks is illegal and dangerous. Please stay behind the yellow line at staions or you might be ran over, its simple knowledge.",
+    "Thank you for travelling on this V-Line service. We hope you enjoy your journey.",
+    "Please do not lean against the doors or windows. It is dangerous and could cause injury to yourself or others.",
+    "Please do not play loud music or make excessive noise on the train. It is disrespectful to other passengers.",
+    "Please do not use your phone in the quiet carriage. It is disrespectful to other passengers."
+  ],
+  "Exit": [
+    "Please exit on the right in the direction of travel.",
+    "Please exit on the left in the direction of travel",
+    "Please do not exit from this carriage. The doors will not open, please head to another carriage."
+  ]
+}

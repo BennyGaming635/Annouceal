@@ -61,7 +61,8 @@ CRANBOURNE_TO_CITY = [
     "Cranbourne", "Merinda Park", "Lynbrook", "Dandenong", "Yarraman",
     "Noble Park", "Sandown Park", "Springvale", "Westall", "Clayton",
     "Huntingdale", "Oakleigh", "Hughesdale", "Murrumbeena", "Carnegie",
-    "Caulfield", "South Yarra", "Richmond", "Flinders Street"
+    "Caulfield", "South Yarra", "Richmond", "Parliament", "Melbourne Central",
+    "Flagstaff", "Southern Cross", "Flinders Street"
 ]
 
 CITY_TO_CRANBOURNE = list(reversed(CRANBOURNE_TO_CITY))
@@ -71,11 +72,52 @@ PAKENHAM_TO_CITY = [
     "Berwick", "Narre Warren", "Hallam", "Dandenong", "Yarraman",
     "Noble Park", "Sandown Park", "Springvale", "Westall", "Clayton",
     "Huntingdale", "Oakleigh", "Hughesdale", "Murrumbeena", "Carnegie",
-    "Caulfield", "South Yarra", "Richmond", "Flinders Street"
+    "Caulfield", "South Yarra", "Richmond", "Parliament", "Melbourne Central",
+    "Flagstaff", "Southern Cross", "Flinders Street"
 ]
 
 CITY_TO_PAKENHAM = list(reversed(PAKENHAM_TO_CITY))
 
+GLEN_TO_CITY = [
+    "Glen Waverley", "Syndal", "Mount Waverley", "Jordanville", "Holmesglen",
+    "East Malvern", "Darling", "Glen Iris", "Gardiner", "Tooronga",
+    "Kooyong", "Heyington", "Burnley", "East Richmond", "Richmond",
+    "Flinders Street"
+]
+
+CITY_TO_GLEN = list(reversed(GLEN_TO_CITY))
+
+ALAMEIN_TO_CITY = [
+    "Alamein", "Ashburton", "Birwood", "Hartwell", "Willison",
+    "Riversdale", "Camberwell", "Auburn", "Glenferrie", "Hawthorn",
+    "Burnley", "East Richmond", "Richmond", "Parliament", "Melbourne Central",
+    "Flagstaff", "Southern Cross", "Flinders Street",
+]
+
+CITY_TO_ALAMEIN = list(reversed(ALAMEIN_TO_CITY))
+
+LILYDALE_TO_CITY = [
+    "Lilydale", "Mooroolbark", "Croydon", "Ringwood East", "Ringwood",
+    "Heatherdale", "Mitcham", "Nunawadling", "Blackburn", "Blackburn",
+    "Laburnum", "Box Hill", "Union", "Chatham", "Canterbury",
+    "East Camberwell", "Camberwell", "Auburn", "Glenferrie", "Hawthorn",
+    "Burnley", "East Richmond", "Richmond", "Parliament", "Melbourne Central",
+    "Flagstaff", "Southern Cross", "Flinders Street"
+]
+
+CITY_TO_LILYDALE = list(reversed(LILYDALE_TO_CITY))
+
+BELGRAVE_TO_CITY = [
+    "Belgrave", "Tecoma", "Upwey", "Upper Ferntree Gully", "Ferntree Gully", 
+    "Boronia", "Bayswater", "Heathmont", "Ringwood", "Heatherdale",
+    "Mitcham", "Nunawadling", "Blackburn", "Blackburn", "Laburnum",
+    "Box Hill", "Union", "Chatham", "Canterbury", "East Camberwell",
+    "Camberwell", "Auburn", "Glenferrie", "Hawthorn", "Burnley",
+    "East Richmond", "Richmond", "Parliament", "Melbourne Central", "Flagstaff",
+    "Southern Cross", "Flinders Street"
+]
+
+CITY_TO_BELGRAVE = list(reversed(BELGRAVE_TO_CITY))
 
 ROUTE_CODES = {
     "Sandringham to City": 100,
@@ -89,7 +131,15 @@ ROUTE_CODES = {
     "Cranbourne to City": 300,
     "City to Cranbourne": 301,
     "Pakenham to City": 302,
-    "City to Pakenham": 303
+    "City to Pakenham": 303,
+    "Glen Waverley to City": 400,
+    "City to Glen Waverley": 401,
+    "Alamein to City": 402,
+    "City to Alamein": 403,
+    "Lilydale to City": 404,
+    "City to Lilydale": 405,
+    "Belgrave to City": 406,
+    "City to Belgrave": 407,
 }
 
 def load_prompts():
@@ -241,6 +291,22 @@ class Annouceal:
             self.route = PAKENHAM_TO_CITY
         elif route_name == "City to Pakenham":
             self.route = CITY_TO_PAKENHAM
+        elif route_name == "Glen Waverley to City":
+            self.route = GLEN_TO_CITY
+        elif route_name == "City to Glen Waverley": 
+            self.route = CITY_TO_GLEN
+        elif route_name == "Alamein to City":
+            self.route = ALAMEIN_TO_CITY
+        elif route_name == "City to Alamein":
+            self.route = CITY_TO_ALAMEIN
+        elif route_name == "Lilydale to City":
+            self.route = LILYDALE_TO_CITY
+        elif route_name == "City to Lilydale":
+            self.route = CITY_TO_LILYDALE
+        elif route_name == "Belgrave to City":
+            self.route = BELGRAVE_TO_CITY
+        elif route_name == "City to Belgrave":
+            self.route = CITY_TO_BELGRAVE
         
         else:
             self.route = None
