@@ -166,8 +166,6 @@ ROUTE_CODES = {
     "City to Hurstbridge": 501,
     "Mernda to City": 502,
     "City to Mernda": 503,
-    "Hurstbridge to City": 504,
-    "City to Hurstbridge": 505,
 }
 
 def load_prompts():
