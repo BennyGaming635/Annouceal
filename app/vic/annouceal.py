@@ -119,6 +119,28 @@ BELGRAVE_TO_CITY = [
 
 CITY_TO_BELGRAVE = list(reversed(BELGRAVE_TO_CITY))
 
+HURST_TO_CITY = [
+    "Hurstbridge", "Wattle Glen", "Diamond Creek", "Eltham", "Montmorency", 
+    "Greensborough", "Watsonia", "Macleod", "Rosanna", "Heidelberg",
+    "Eaglemont", "Ivanhoe", "Darebin", "Alphington", "Fairfield",
+    "Dennis", "Westgrath", "Clifton Hill", "Victoria Park", "Collingwood",
+    "North Richmond", "West Richmond", "Jolimont", "Flinders Street", "Southern Cross",
+    "Flagstaff", "Melbourne Central", "Parliament",
+]
+
+CITY_TO_HURST = list(reversed(HURST_TO_CITY))
+
+HURST_TO_CITY = [
+    "Mernda", "Hawkstowe", "Middle Gorge", "South Morang", "Epping",
+    "Lalor", "Thomastown", "Keon Park", "Ruthven", "Reservoir",
+    "Regent", "Preston", "Bell", "Thornbury", "Croxton",
+    "Northcote", "Merri", "Rushall", "Clifton Hill", "Victoria Park",
+    "Collingwood", "North Richmond", "West Richmond", "Jolimont", "Flinders Street",
+    "Southern Cross", "Flagstaff", "Melbourne Central", "Parliament",
+]
+
+CITY_TO_HURST = list(reversed(HURST_TO_CITY))
+
 ROUTE_CODES = {
     "Sandringham to City": 100,
     "City to Sandringham": 101,
@@ -140,6 +162,12 @@ ROUTE_CODES = {
     "City to Lilydale": 405,
     "Belgrave to City": 406,
     "City to Belgrave": 407,
+    "Hurstbridge to City": 500,
+    "City to Hurstbridge": 501,
+    "Mernda to City": 502,
+    "City to Mernda": 503,
+    "Hurstbridge to City": 504,
+    "City to Hurstbridge": 505,
 }
 
 def load_prompts():
@@ -307,6 +335,14 @@ class Annouceal:
             self.route = BELGRAVE_TO_CITY
         elif route_name == "City to Belgrave":
             self.route = CITY_TO_BELGRAVE
+        elif route_name == "Hurstbridge to City":
+            self.route = HURST_TO_CITY
+        elif route_name == "City to Hurstbridge":
+            self.route = CITY_TO_HURST
+        elif route_name == "Mernda to City":
+            self.route = HURST_TO_CITY
+        elif route_name == "City to Mernda":
+            self.route = CITY_TO_HURST
         
         else:
             self.route = None

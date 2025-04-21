@@ -24,6 +24,10 @@
 | Lilydale       | City to Lilydale           |  405  |
 | Belgrave       | Belgrave to City           |  406  |
 | Belgrave       | City to Belgrave           |  407  |
+| Mernda         | Mernda to City             |  502  |
+| Mernda         | City to Mernda             |  503  |
+| Hurstbridge    | Hurstbridge to City        |  500  |
+| Hurstbridge    | City to Hurstbridge        |  501  |
 
 
 ## New lines will be added periodically.
